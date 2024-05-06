@@ -124,10 +124,10 @@ def create_grid_interface(image_dir, output_dir, version):
     main_frame.pack(side="left", fill="both", expand=True, padx=50)
 
     right_frame = Frame(window, bg="#212121")
-    right_frame.pack(side="right", padx=100, fill="both", expand=True)
+    right_frame.pack(side="right", padx=10, fill="both", expand=True)
 
     full_image_display = Label(right_frame, bg="#212121")
-    full_image_display.pack(pady=20)
+    full_image_display.pack(pady=50)
 
     full_image_label = Label(right_frame, text="", font=("Arial", 18), bg="#212121", fg="white")
     full_image_label.pack(pady=10)
