@@ -5,7 +5,7 @@ This project demonstrates the implementation of an Artificial Neural Network (AN
 
 ## Authors
 - [Álvaro García Vásquez](https://github.com/AlvaroVasquezAI)
-- Luis Alfredo Cuamatzi Flores
+- [Luis Alfredo Cuamatzi Flores](https://github.com/mexboxluis)
 - Fernando Daniel Portilla Posadas
 
 ## Dataset
