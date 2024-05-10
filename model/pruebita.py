@@ -19,14 +19,14 @@ DATA_PATH_V2 = "dataset/V2/output"
 MODEL_FILE = 'model.pkl'
 
 FINAL_HYPERPARAMETERS = {
-    'hidden_layer_sizes': (128, 128, 128),
-    'max_iter': 100,
+    'hidden_layer_sizes': (128, 128),
+    'max_iter': 250,
     'alpha': 0.01,
     'solver': 'adam',
-    'verbose': False,
+    'verbose': 10,
     'random_state': 42,
     'learning_rate_init': .001,
-    'tol': 1e-4
+    'tol': 1e-5
 }
 
 
@@ -54,7 +54,6 @@ def prepare_dataset(data_paths):
     # Filter out some instances of class A to address class imbalance
     data = [(img, cls) for img, cls in data if cls != "A" or np.random.rand() < 0.33]
 
-    print("Calculating feature vectors...")
     feature_vectors, classes = zip(*data)
     feature_vectors = [np.array(img.generateFeatureVector()) for img in feature_vectors]
 
@@ -67,7 +66,7 @@ def prepare_dataset(data_paths):
     le = LabelEncoder()
     y = le.fit_transform(y)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     print(df['Class'].value_counts())
 
@@ -85,14 +84,10 @@ def prepare_dataset(data_paths):
 def train_model(X_train, y_train, use_grid_search=False):
     """Trains an MLP model with or without GridSearchCV for hyperparameter optimization."""
     mlp = MLPClassifier(**FINAL_HYPERPARAMETERS)
-    
-    #Print model information
-    print(mlp)
 
     if use_grid_search:
         param_grid = {
-            #Se prueba con muchas arquitecturas, diferentes, desde muy simples hasta muy complejas desde 2 neruonas hasta 128
-            'hidden_layer_sizes':  [ (2, 2, 2), (4, 4, 4), (8, 8, 8), (16, 16, 16), (32, 32, 32), (64, 64, 64), (128, 128, 128), (2, 2), (4, 4), (8, 8), (16, 16), (32, 32), (64, 64), (128, 128)],
+            'hidden_layer_sizes': [(64, 128, 64), (128, 128, 128), (128, 128, 128, 128)],
             'max_iter': [100, 200, 300],
             'alpha': [0.1, 0.01, 0.001],
             'solver': ['sgd', 'adam'],
@@ -118,10 +113,9 @@ def evaluate_model(model, X_test, y_test, le):
 def perform_cross_validation(model, X, y, cv=5):
     """Performs cross-validation and prints the average accuracy. Returns the best model."""
     results = cross_validate(model, X, y, cv=cv, return_train_score=True)
-    print("Cross-validation results:")
     print("Average test accuracy:", np.mean(results['test_score']))
     print("Average train accuracy:", np.mean(results['train_score']))
-    
+
     return model 
 
 
@@ -136,6 +130,8 @@ def predict_and_visualize(model, image_path, grid_size=128):
     num_grids = 1024 // grid_size
     images = [image]
     grids = [[img[i*grid_size:(i+1)*grid_size, j*grid_size:(j+1)*grid_size] for i in range(num_grids) for j in range(num_grids)] for img in images]
+
+    print(len(grids[0])) #64
 
 
 
@@ -187,16 +183,16 @@ def predict_and_visualize(model, image_path, grid_size=128):
 
 
 if __name__ == "__main__":
-    cross_val = False
+    cross_val = True
     if not os.path.exists(MODEL_FILE):
         X_train, X_test, y_train, y_test, le = prepare_dataset([DATA_PATH_V1, DATA_PATH_V2])
 
         if cross_val:
             model = MLPClassifier(**FINAL_HYPERPARAMETERS)
-
+            print("Cross-validation results:")
             perform_cross_validation(model, np.concatenate((X_train, X_test)), np.concatenate((y_train, y_test)))
         
-        model = train_model(X_train, y_train, use_grid_search=True)
+        model = train_model(X_train, y_train, use_grid_search=False)
 
         evaluate_model(model, X_test, y_test, le)
         joblib.dump(model, MODEL_FILE)

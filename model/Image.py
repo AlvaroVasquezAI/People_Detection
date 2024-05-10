@@ -24,6 +24,7 @@ class Image:
         self.grayLevelCooccurrenceMatrixProperties = self.calculateGrayLevelCooccurrenceMatrixProperties()
         self.histogramOfOrientedGradients = self.calculateHistogramOfOrientedGradients()
         self.peakLocalMax = self.calculatePeakLocalMax()
+        self.huMoments = self.getHuMoments()
 
     def setImage(self, image):
         return image
@@ -125,12 +126,18 @@ class Image:
 
         return skimage.feature.peak_local_max(image_gray, min_distance=1, threshold_abs=0.1, num_peaks=10)
     
-    
+    def getHuMoments(self):
+        image_gray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+        image_gray = cv2.GaussianBlur(image_gray, (5, 5), 0)
+        _, image_gray = cv2.threshold(image_gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        moments = cv2.moments(image_gray)
+        huMoments = cv2.HuMoments(moments)
+
+        return huMoments
     
     def generateFeatureVector(self):
         featureVector = np.array([])
 
-        featureVector = np.append(featureVector, np.concatenate([ channel.flatten() for channel in self.colorChannelsRGB ]))
         featureVector = np.append(featureVector, self.RGBMean)
         featureVector = np.append(featureVector, self.RGBMode)
         featureVector = np.append(featureVector, self.RGBVariance)
@@ -139,6 +146,6 @@ class Image:
         featureVector = np.append(featureVector, self.grayLevelCooccurrenceMatrixProperties)
         featureVector = np.append(featureVector, self.histogramOfOrientedGradients)
         featureVector = np.append(featureVector, self.peakLocalMax)
-
+        featureVector = np.append(featureVector, self.huMoments)
         return featureVector
     
