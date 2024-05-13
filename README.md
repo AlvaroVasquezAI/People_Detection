@@ -41,18 +41,8 @@ Each image is processed through a custom tool that divides the image into 128x12
       - `Noise/`
       - `P/` (People)
 
-<h3 style = 'text-align:center'> <strong>Dataset</strong></h3>
-<div style = "display: flex; justify-content: space-around; width:600">
-    <div>
-        <img src = "resources/images/v1Example.png" style = "width: 300, center;"/>
-        <p style = "text-align: center;"> <strong>Version 1</strong> </p>
-    </div>
-    <div>
-        <img src = "resources/images/v2Example.png" style = "width: 300 center;"/>
-        <p style = "text-align: center;"> <strong>Version 2</strong> </p>
-    </div>
-</div>
-
+<img src = "resources/images/v1Example.png" style = "width: 300"/>
+<img src = "resources/images/v2Example.png" style = "width: 300"/>
 
 ## Image Features
 The following features are extracted from each grid for training the neural network:
