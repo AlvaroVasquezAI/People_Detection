@@ -42,7 +42,7 @@ Each image is processed through a custom tool that divides the image into 128x12
       - `P/` (People)
 
 <h3 style = 'text-align:center'> <strong>Dataset</strong></h3>
-<div style = "display: flex; justify-content: space-around;">
+<div style = "display: flex; justify-content: space-around; width:600">
     <div>
         <img src = "resources/images/v1Example.png" style = "width: 300, center;"/>
         <p style = "text-align: center;"> <strong>Version 1</strong> </p>
