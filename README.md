@@ -41,8 +41,8 @@ Each image is processed through a custom tool that divides the image into 128x12
       - `Noise/`
       - `P/` (People)
 
-<img src = "resources/images/v1Example.png" style = "width: 300"/>
-<img src = "resources/images/v2Example.png" style = "width: 300"/>
+<img src = "resources/images/v1Example.png" width="400"/>
+<img src = "resources/images/v2Example.png" width="400"/>
 
 ## Image Features
 The following features are extracted from each grid for training the neural network:
