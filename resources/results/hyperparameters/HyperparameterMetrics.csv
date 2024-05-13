@@ -1,0 +1,71 @@
+Hyperparameters,Test Accuracy,Train Accuracy,Precision A,Precision N,Precision P
+"hidden_layer_sizes    (128, 128, 128, 128, 128)
+max_iter                                    200
+alpha                                    0.0001
+solver                                     adam
+learning_rate_init                          0.1
+tol                                      0.0001
+Name: 420, dtype: object",0.5069204152249135,0.5063811377893143,0.51,0.0,0.0
+"hidden_layer_sizes    (128, 128, 128, 128)
+max_iter                               200
+alpha                               0.0001
+solver                                 sgd
+learning_rate_init                   0.001
+tol                                0.00001
+Name: 262, dtype: object",0.8261245674740484,1.0,0.88,0.69,0.82
+"hidden_layer_sizes    (128, 128, 128, 128, 128)
+max_iter                                    200
+alpha                                    0.0001
+solver                                      sgd
+learning_rate_init                          0.1
+tol                                    0.000001
+Name: 431, dtype: object",0.8503460207612457,1.0,0.9,0.71,0.85
+"hidden_layer_sizes    (128, 128, 128, 128, 128)
+max_iter                                    300
+alpha                                      0.01
+solver                                      sgd
+learning_rate_init                          0.1
+tol                                     0.00001
+Name: 448, dtype: object",0.8434256055363322,0.9993510707332901,0.9,0.7,0.83
+"hidden_layer_sizes    (128, 128, 128, 128, 128)
+max_iter                                    100
+alpha                                    0.0001
+solver                                     adam
+learning_rate_init                         0.01
+tol                                     0.00001
+Name: 364, dtype: object",0.8391003460207612,1.0,0.86,0.71,0.87
+"hidden_layer_sizes    (128, 128, 128, 128, 128)
+max_iter                                    300
+alpha                                     0.001
+solver                                      sgd
+learning_rate_init                          0.1
+tol                                      0.0001
+Name: 465, dtype: object",0.8434256055363322,0.9995673804888601,0.9,0.72,0.81
+"hidden_layer_sizes    (128, 128, 128, 128)
+max_iter                               100
+alpha                                0.001
+solver                                 sgd
+learning_rate_init                    0.01
+tol                                0.00001
+Name: 193, dtype: object",0.8399653979238755,1.0,0.89,0.7,0.83
+"hidden_layer_sizes    (128, 128, 128, 128)
+max_iter                               200
+alpha                                 0.01
+solver                                 sgd
+learning_rate_init                   0.001
+tol                                 0.0001
+Name: 225, dtype: object",0.8252595155709342,1.0,0.88,0.69,0.82
+"hidden_layer_sizes    (128, 128, 128)
+max_iter                          200
+alpha                          0.0001
+solver                            sgd
+learning_rate_init               0.01
+tol                          0.000001
+Name: 104, dtype: object",0.8451557093425606,1.0,0.9,0.74,0.82
+"hidden_layer_sizes    (128, 128, 128, 128)
+max_iter                               200
+alpha                                 0.01
+solver                                 sgd
+learning_rate_init                    0.01
+tol                                0.00001
+Name: 229, dtype: object",0.8382352941176471,1.0,0.89,0.7,0.82

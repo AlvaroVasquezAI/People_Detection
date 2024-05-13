@@ -12,7 +12,6 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV, cross_validate
 
 
-
 # Define constants for data paths and model file
 DATA_PATH_V1 = "dataset/V1/output"
 DATA_PATH_V2 = "dataset/V2/output"
@@ -29,9 +28,7 @@ FINAL_HYPERPARAMETERS = {
     'tol': 1e-4
 }
 
-
 def load_images_with_classes(path):
-    """Loads images from the given path and returns a list of (Image, class) tuples."""
     data = []
     for class_name in os.listdir(path):
         if class_name != "Noise" and not class_name.endswith((".csv", ".DS_Store")):
@@ -41,12 +38,7 @@ def load_images_with_classes(path):
                 data.append((img_obj, class_name))
     return data
 
-
 def prepare_dataset(data_paths):
-    """
-    Loads data from the specified paths, preprocesses it, and splits it into train/test sets.
-    Returns X_train, X_test, y_train, y_test, and the label encoder.
-    """
     data = []
     for path in data_paths:
         data.extend(load_images_with_classes(path))
@@ -71,24 +63,18 @@ def prepare_dataset(data_paths):
 
     print(df['Class'].value_counts())
 
-
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
-
-    
-
 
     return X_train, X_test, y_train, y_test, le
 
 
 def train_model(X_train, y_train, use_grid_search=False):
-    """Trains an MLP model with or without GridSearchCV for hyperparameter optimization."""
     mlp = MLPClassifier(**FINAL_HYPERPARAMETERS)
-    
-    #Print model information
-    print(mlp)
 
+    print(mlp)
+    
     if use_grid_search:
         param_grid = {
             #Se prueba con muchas arquitecturas, diferentes, desde muy simples hasta muy complejas desde 2 neruonas hasta 128
@@ -196,7 +182,7 @@ if __name__ == "__main__":
 
             perform_cross_validation(model, np.concatenate((X_train, X_test)), np.concatenate((y_train, y_test)))
         
-        model = train_model(X_train, y_train, use_grid_search=True)
+        model = train_model(X_train, y_train, use_grid_search=False)
 
         evaluate_model(model, X_test, y_test, le)
         joblib.dump(model, MODEL_FILE)
@@ -204,12 +190,8 @@ if __name__ == "__main__":
         model = joblib.load(MODEL_FILE)
         # ... (use the model for prediction and visualization)
 
-    # Example usage of prediction and visualization
+
     predict_and_visualize(model, "dataset/V1/1.png")
 
-
-    # Example usage of cross-validation
-    #perform_cross_validation(model, X, y)
-
-    # Example usage of prediction and visualization
-    #predict_and_visualize(model, "dataset/V1/9.png")
+    # Perform cross-validation and print the average accuracy
+    # cross_val = True
