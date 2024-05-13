@@ -71,12 +71,12 @@ Our training approach focuses on minimizing overfitting while maximizing the pre
 ## Training Model
 We provide detailed steps on how the model is trained, including code snippets and explanations of each stage of the training process.
 
-![Model](resources/result/model/Results.png)
-![Hyperparameters](resources/result/model/Hyperparameters.png)
-![Classes](resources/result/model/ClassFeature.png)
-![Report](resources/result/model/ClassificationReport.png)
-![ConfusionMatrix](resources/result/model/ConfusionMatrix.png)
-![LearningCurve](resources/result/model/LearningCurve.png)
+![Model](resources/results/model/Results.png)
+![Hyperparameters](resources/results/model/Hyperparameters.png)
+![Classes](resources/results/model/ClassFeature.png)
+![Report](resources/results/model/ClassificationReport.png)
+![ConfusionMatrix](resources/results/model/ConfusionMatrix.png)
+![LearningCurve](resources/results/model/LearningCurve.png)
 
 ## Using the Model (App)
 Description of how the model has been integrated into a user-friendly application for real-time people detection.
